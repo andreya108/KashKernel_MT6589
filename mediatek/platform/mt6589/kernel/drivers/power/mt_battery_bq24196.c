@@ -1294,7 +1294,29 @@ INT16 BattThermistorConverTemp(INT32 Res)
     INT32 RES1=0,RES2=0;
     INT32 TBatt_Value=-200,TMP1=0,TMP2=0;
 
-#if defined(BAT_NTC_10_TDK_1)        
+/*lenovo-sw weiweij added 20130123 for ntc*/
+#if 1
+   BATT_TEMPERATURE Batt_Temperature_Table[] = {
+     {-20,67790},
+     {-15,53460},
+     {-10,42450},
+     { -5,33930},
+     {  0,27280},
+     {  5,22070},
+     { 10,17960},
+     { 15,14700},
+     { 20,12090},
+     { 25,10000},
+     { 30,8312},
+     { 35,6942},
+     { 40,5826},
+     { 45,4911},
+     { 50,4158},
+     { 55,3536},
+     { 60,3019}
+    };
+#else
+#if defined(BAT_NTC_10_TDK_1)
     BATT_TEMPERATURE Batt_Temperature_Table[] = {
      {-20,95327},
      {-15,71746},
@@ -1403,6 +1425,30 @@ INT16 BattThermistorConverTemp(INT32 Res)
 		{ 60,11210}
 	};
 #endif
+
+#if (BAT_NTC_100 == 1)
+    BATT_TEMPERATURE Batt_Temperature_Table[] = {
+        {-20,   1105330},
+        {-15,   814164},
+        {-10,   606318},
+        {-5,    456238},
+        {0,     346687},
+        {5,     265894},
+        {10,    205728},
+        {15,    160506},
+        {20,    126217},
+        {25,    100000},
+        {30,    79796},
+        {35,    64106},
+        {40,    51836},
+        {45,    42172},
+        {50,    34512},
+        {55,    28402},
+        {60,    23499},
+    };
+#endif
+#endif
+/*lenovo-sw weiweij added 20130123 for ntc end*/
 
     if(Res>=Batt_Temperature_Table[0].TemperatureR)
     {
