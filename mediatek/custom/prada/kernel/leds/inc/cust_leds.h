@@ -6,10 +6,13 @@ enum mt65xx_led_type
 {
 	MT65XX_LED_TYPE_RED = 0,
 	MT65XX_LED_TYPE_GREEN,
+#ifndef LENOVO_LEDS_GPIO_SUPPORT
+	MT65XX_LED_TYPE_GREENLED,
+#endif
 	MT65XX_LED_TYPE_BLUE,
 	MT65XX_LED_TYPE_JOGBALL,
 	MT65XX_LED_TYPE_KEYBOARD,
-	MT65XX_LED_TYPE_BUTTON,	
+	MT65XX_LED_TYPE_BUTTON,
 	MT65XX_LED_TYPE_LCD,
 	MT65XX_LED_TYPE_TOTAL,
 };
@@ -66,6 +69,8 @@ struct cust_mt65xx_led {
 };
 
 extern struct cust_mt65xx_led *get_cust_led_list(void);
+
+#define LEDS_GPIO_SLEEP_WORKAROUND
 
 #endif
 
